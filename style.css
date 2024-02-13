@@ -1,4 +1,14 @@
 ul {
     margin: 0;
     padding-left: 15px;
+    list-style: none;
+}
+
+.arrow {
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.arrow-bottom {
+    transform: rotateZ(90deg);
 }

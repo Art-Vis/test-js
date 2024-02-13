@@ -83,6 +83,11 @@ const data = {
     ]
 };
 
+const arrowSvg = {
+    right: `<svg class="arrow-left-3" width='5px' viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" /></svg>`,
+    bottom: `<svg class="arrow-bottom" width='5px' viewBox="0 0 5 9"><path d="M0.419,9.000 L0.003,8.606 L4.164,4.500 L0.003,0.394 L0.419,0.000 L4.997,4.500 L0.419,9.000 Z" /></svg>`,
+}
+
 const tree = document.getElementById('tree');
 
 // Функция для построения дерева
@@ -99,13 +104,21 @@ function buildTree(data, parentId, indent) {
     parentItems.forEach(item => {
 
         const treeListItem = document.createElement('li');
-        
+
         if (item.price === 0) {
-            treeListItem.textContent = `${item.name}`;
+            treeListItem.innerHTML = `${item.name}`;
             treeListItem.classList.add('list__item');
+            const arrowRight = document.createElement('div');
+            arrowRight.classList.add('arrow');
+            arrowRight.innerHTML = `${arrowSvg.right}`;
+            treeListItem.prepend(arrowRight);
         } else {
-            treeListItem.textContent = `${item.name} (${item.price}₽)`;
+            treeListItem.innerHTML = `${item.name} (${item.price}₽)`;
             treeListItem.classList.add('list__item-price');
+            const arrowBottom = document.createElement('div');
+            arrowBottom.classList.add('arrow');
+            arrowBottom.innerHTML = `${arrowSvg.bottom}`;
+            treeListItem.prepend(arrowBottom);
         }
 
         htmlList.append(treeListItem);
